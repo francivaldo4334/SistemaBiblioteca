@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.db.models.fields import validators
+import isbnlib
 
 
 class Autor(models.Model):
@@ -13,6 +15,12 @@ class TipoLivro(models.Model):
         verbose_name="Nome do tipo de livro",
         help_text="Indica o tipo de livro ex: Quadrinho, Crônica brasileira, ect",
     )
+
+
+def valida_codigo_isbn(value):
+    is_sbn10 = isbnlib.is_isbn10(value)
+    is_sbn13 = isbnlib.is_isbn13(value)
+    return is_sbn10 or is_sbn13
 
 
 class LivroRegistro(models.Model):
@@ -41,4 +49,5 @@ class LivroRegistro(models.Model):
         help_text="Digite um ISBN válido (ex: 978-85-12345-67-8 ou 85-12345-67-X)",
         max_length=20,
         unique=True,
+        validators=[valida_codigo_isbn],
     )
