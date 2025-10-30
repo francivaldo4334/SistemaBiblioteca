@@ -1,10 +1,17 @@
 from django.contrib import admin
 
 from acervo_de_livros.models import LivroRegistro, TipoLivro
+from controle_de_contas.admin import (
+    PermissaoParaTudo,
+    PermissaoParaTudoMenosDeletar,
+)
 
 
 @admin.register(LivroRegistro)
-class LivroRegistroAdmin(admin.ModelAdmin):
+class LivroRegistroAdmin(
+    PermissaoParaTudoMenosDeletar,
+    admin.ModelAdmin,
+):
     fields = [
         "isbn",
         "titulo",
@@ -25,5 +32,8 @@ class LivroRegistroAdmin(admin.ModelAdmin):
 
 
 @admin.register(TipoLivro)
-class TipoLivroAdmin(admin.ModelAdmin):
+class TipoLivroAdmin(
+    PermissaoParaTudo,
+    admin.ModelAdmin,
+):
     search_fields = ["tipo"]

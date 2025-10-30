@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "acervo_de_livros",
     "controle_de_emprestimo",
+    "controle_de_contas",
 ]
 
 MIDDLEWARE = [

@@ -1,15 +1,21 @@
 from django.contrib import admin
-
+from controle_de_contas.admin import PermissaoParaTudoMenosDeletar, PermissaoSomenteDeLeitura
 from controle_de_emprestimo.models import AlunoRegistro, Emprestimo
 
 
 @admin.register(AlunoRegistro)
-class AlunoRegistroAdmin(admin.ModelAdmin):
+class AlunoRegistroAdmin(
+    PermissaoSomenteDeLeitura,
+    admin.ModelAdmin,
+):
     search_fields = ["nome", "metricula"]
 
 
 @admin.register(Emprestimo)
-class EmprestimoAdmin(admin.ModelAdmin):
+class EmprestimoAdmin(
+    PermissaoParaTudoMenosDeletar,
+    admin.ModelAdmin,
+):
     list_display = ["aluno", "livro", "data_devolucao"]
     readonly_fields = ["funcionario_responsavel"]
     autocomplete_fields = ["aluno", "livro"]
