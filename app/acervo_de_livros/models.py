@@ -1,13 +1,6 @@
 from django.db import models
-from django.core.validators import MinValueValidator
-from django.db.models.fields import validators
+from django.core.validators import MinValueValidator, integer_validator
 import isbnlib
-
-
-class Autor(models.Model):
-    nome = models.CharField(
-        verbose_name="Nome do autor",
-    )
 
 
 class TipoLivro(models.Model):
@@ -24,13 +17,26 @@ def valida_codigo_isbn(value):
 
 
 class LivroRegistro(models.Model):
+    isbn = models.CharField(
+        verbose_name="Código ISBN do livro",
+        help_text="Digite um ISBN válido (ex: 978-85-12345-67-8 ou 85-12345-67-X)",
+        max_length=20,
+        unique=True,
+        validators=[valida_codigo_isbn],
+    )
+    titulo = models.CharField(
+        verbose_name="Título do livro",
+    )
     quantidade = models.PositiveIntegerField(
         verbose_name="Quantidade de cópias",
         validators=[
             MinValueValidator(1),
         ],
     )
-    autores = models.ManyToManyField(Autor)
+    autores = models.TextField(
+        verbose_name="Autor(es)",
+        help_text="Autor ou autores do livro",
+    )
     tipo = models.ForeignKey(
         TipoLivro,
         on_delete=models.CASCADE,
@@ -41,13 +47,10 @@ class LivroRegistro(models.Model):
             MinValueValidator(1),
         ],
     )
-    data_publicacao = models.DateField(
-        verbose_name="Data da públicação do livro",
+    ano_publicacao = models.CharField(
+        verbose_name="Ano da públicação do livro",
+        validators=[integer_validator],
     )
-    isbn = models.CharField(
-        verbose_name="Código ISBN do livro",
-        help_text="Digite um ISBN válido (ex: 978-85-12345-67-8 ou 85-12345-67-X)",
-        max_length=20,
-        unique=True,
-        validators=[valida_codigo_isbn],
+    editora = models.CharField(
+        verbose_name="Editora do livro",
     )
