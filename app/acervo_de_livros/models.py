@@ -68,6 +68,15 @@ class LivroRegistro(models.Model):
         null=True,
     )
 
+    def save(self, *args, **kwarg):
+        if not self.quantidade_disponivel:
+            self.quantidade_disponivel = self.quantidade
+        return super().save(*args, **kwarg)
+
     class Meta:
         verbose_name = "Livro Registrado"
         verbose_name_plural = "Livros Registrados"
+
+
+    def __str__(self):
+        return f"{self.titulo} / {self.autores}"

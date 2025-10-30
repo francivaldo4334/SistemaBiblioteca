@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "acervo_de_livros",
+    "controle_de_emprestimo",
 ]
 
 MIDDLEWARE = [

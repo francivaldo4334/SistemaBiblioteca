@@ -12,12 +12,13 @@ class LivroRegistroAdmin(admin.ModelAdmin):
         "ano_publicacao",
         "editora",
         "tipo",
-        "edicao",
         "quantidade",
+        "edicao",
         "quantidade_disponivel",
     ]
     readonly_fields = ["quantidade_disponivel"]
     autocomplete_fields = ["tipo"]
+    search_fields = ["titulo", "isbn", "autores", "editora"]
 
     class Media:
         js = ("acervo_de_livros/js/busca_isbn.js",)

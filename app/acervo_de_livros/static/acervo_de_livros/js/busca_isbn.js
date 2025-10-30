@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (data.titulo) document.querySelector('#id_titulo').value = data.titulo;
         if (data.autores) document.querySelector('#id_autores').value = data.autores;
+        if (data.editora) document.querySelector('#id_editora').value = data.editora;
         if (data.ano) document.querySelector('#id_ano_publicacao').value = data.ano;
       })
       .catch(error => {
