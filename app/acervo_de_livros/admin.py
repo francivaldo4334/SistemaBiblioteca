@@ -14,7 +14,9 @@ class LivroRegistroAdmin(admin.ModelAdmin):
         "tipo",
         "edicao",
         "editora",
+        "quantidade_disponivel",
     ]
+    readonly_fields = ["quantidade_disponivel"]
 
     class Media:
         js = ("acervo_de_livros/js/busca_isbn.js",)

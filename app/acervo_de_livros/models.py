@@ -33,6 +33,10 @@ class LivroRegistro(models.Model):
             MinValueValidator(1),
         ],
     )
+    quantidade_disponivel = models.PositiveIntegerField(
+        verbose_name="Quantidade de cópias disponiveis para os alunos",
+        help_text="Este campo idica a quantidade real de livros disponiveis para serem pegos pelos alunos",
+    )
     autores = models.CharField(
         verbose_name="Autor(es)",
         help_text="Autor ou autores do livro",
