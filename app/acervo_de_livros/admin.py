@@ -8,11 +8,11 @@ class LivroRegistroAdmin(admin.ModelAdmin):
     fields = [
         "isbn",
         "titulo",
+        "autores",
+        "ano_publicacao",
         "quantidade",
         "tipo",
-        "autores",
         "edicao",
-        "ano_publicacao",
         "editora",
     ]
 

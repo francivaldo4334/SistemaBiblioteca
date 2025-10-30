@@ -33,7 +33,7 @@ class LivroRegistro(models.Model):
             MinValueValidator(1),
         ],
     )
-    autores = models.TextField(
+    autores = models.CharField(
         verbose_name="Autor(es)",
         help_text="Autor ou autores do livro",
     )
@@ -53,4 +53,6 @@ class LivroRegistro(models.Model):
     )
     editora = models.CharField(
         verbose_name="Editora do livro",
+        blank=True,
+        null=True,
     )
