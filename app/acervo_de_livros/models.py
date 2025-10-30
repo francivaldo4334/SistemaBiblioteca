@@ -9,6 +9,13 @@ class TipoLivro(models.Model):
         help_text="Indica o tipo de livro ex: Quadrinho, Crônica brasileira, ect",
     )
 
+    class Meta:
+        verbose_name = "Tipo de Livro"
+        verbose_name_plural = "Tipos de Livro"
+
+    def __str__(self):
+        return str(self.tipo)
+
 
 def valida_codigo_isbn(value):
     is_sbn10 = isbnlib.is_isbn10(value)
@@ -60,3 +67,7 @@ class LivroRegistro(models.Model):
         blank=True,
         null=True,
     )
+
+    class Meta:
+        verbose_name = "Livro Registrado"
+        verbose_name_plural = "Livros Registrados"
