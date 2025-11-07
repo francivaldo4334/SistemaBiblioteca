@@ -17,10 +17,9 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
-import acervo_de_livros.urls as acervo_de_livros_urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("acervo_de_livros/", include(acervo_de_livros_urls)),
+    path("acervo_de_livros/", include('acervo_de_livros.urls')),
     path('api-auth/', include('rest_framework.urls'))
 ]

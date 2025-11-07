@@ -1,8 +1,11 @@
 from rest_framework import serializers
 
+from acervo_de_livros.models import LivroRegistro
+
 
 class LivroRegistroSerializer(serializers.ModelSerializer):
     class Meta:
+        model = LivroRegistro
         fields = [
             "isbn",
             "titulo",
@@ -14,4 +17,4 @@ class LivroRegistroSerializer(serializers.ModelSerializer):
             "edicao",
             "quantidade_disponivel",
         ]
-        readonly_fields = ["quantidade_disponivel"]
+        read_only_fields = ["quantidade_disponivel"]

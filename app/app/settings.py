@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "django_filters",
     "acervo_de_livros",
     "controle_de_emprestimo",
     "controle_de_contas",
