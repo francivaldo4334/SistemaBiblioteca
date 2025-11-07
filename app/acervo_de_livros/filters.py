@@ -1,7 +1,7 @@
 from django.db.models import Q
 import django_filters
 
-from acervo_de_livros.models import LivroRegistro
+from acervo_de_livros.models import LivroRegistro, TipoLivro
 
 
 class LivroRegistroFilterSet(django_filters.FilterSet):
@@ -20,4 +20,12 @@ class LivroRegistroFilterSet(django_filters.FilterSet):
 
     class Meta:
         model = LivroRegistro
+        fields = ["pesquisa"]
+
+
+class TipoLivroFilterSet(django_filters.FilterSet):
+    pesquisa = django_filters.CharFilter(field_name="tipo", lookup_expr="icontains")
+
+    class Meta:
+        model = TipoLivro
         fields = ["pesquisa"]

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from acervo_de_livros.models import LivroRegistro
+from acervo_de_livros.models import LivroRegistro, TipoLivro
 
 
 class LivroRegistroSerializer(serializers.ModelSerializer):
@@ -18,3 +18,9 @@ class LivroRegistroSerializer(serializers.ModelSerializer):
             "quantidade_disponivel",
         ]
         read_only_fields = ["quantidade_disponivel"]
+
+
+class TipoLivroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TipoLivro
+        exclude = []

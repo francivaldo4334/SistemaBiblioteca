@@ -1,9 +1,10 @@
 from django.http import JsonResponse
+from acervo_de_livros.filters import LivroRegistroFilterSet, TipoLivroFilterSet
 from acervo_de_livros.models import LivroRegistro, TipoLivro, valida_codigo_isbn
 import isbnlib
 from rest_framework import viewsets
 
-from acervo_de_livros.serializers import LivroRegistroSerializer
+from acervo_de_livros.serializers import LivroRegistroSerializer, TipoLivroSerializer
 
 
 def buscar_informacoes_do_livro_com_base_no_isbn(request):
@@ -27,7 +28,10 @@ def buscar_informacoes_do_livro_com_base_no_isbn(request):
 class LivroRegistroViewSet(viewsets.ModelViewSet):
     queryset = LivroRegistro.objects.all()
     serializer_class = LivroRegistroSerializer
+    filterset_class = LivroRegistroFilterSet
 
 
 class TipoLivroViewSet(viewsets.ModelViewSet):
     queryset = TipoLivro.objects.all()
+    serializer_class = TipoLivroSerializer
+    filterset_class = TipoLivroFilterSet
